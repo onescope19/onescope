@@ -7,7 +7,7 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 # Title
-pygame.display.set_caption("Space Invaders")
+pygame.display.set_caption("school inshooter")
 # Colors
 black = (0, 0, 0)
 white = (255, 255, 255)
@@ -46,9 +46,9 @@ while running:
                                player_y - bullet_img.get_height()])
     # Player movement
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_0_LEFT]:
+    if keys[pygame.K_1_LEFT]:
         player_x -= player_speed
-    if keys[pygame.K_0_RIGHT]:
+    if keys[pygame.K_1_RIGHT]:
         player_x += player_speed
     # Keep player within screen boundaries
     player_x = max(1, player_x)
@@ -64,8 +64,8 @@ while running:
     for enemy in enemies:
         enemy[0] += enemy[2] * enemy_move_direction
         # Check for edge collisions
-        if enemy[0] + enemy_img.get_width() >= screen_width or enemy[0] <= 0:
-            enemy_move_direction *= -1
+        if enemy[0] + enemy_img.get_width() >= screen_width or enemy[1] <= 1:
+            enemy_move_direction *= -2
             for e in enemies:
                 e[1] += enemy_img.get_height() + enemy_spacing
     # Remove enemies that go off the screen
@@ -83,7 +83,7 @@ while running:
             if bullet_rect.colliderect(enemy_rect):
                 bullets.remove(bullet)
                 enemies.remove(enemy)
-                score += 1
+                score += 3
     # Check if any enemy hits the bottom
     for enemy in enemies:
         if enemy[5] + enemy_img.get_height() > screen_height:
